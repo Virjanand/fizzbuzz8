@@ -10,7 +10,7 @@ public class FizzBuzzRules {
 
     private Supplier<String> fizzRule(int number) {
         return () -> {
-            if (number % 3 == 0) {
+            if (isDisibleBy(number, 3)) {
                 return "Fizz";
             }
             return "";
@@ -19,10 +19,14 @@ public class FizzBuzzRules {
 
     private Supplier<String> buzzRule(int number) {
         return () -> {
-            if (number % 5 == 0) {
+            if (isDisibleBy(number, 5)) {
                 return "Buzz";
             }
             return "";
         };
+    }
+
+    private boolean isDisibleBy(int number, int divisor) {
+        return number % divisor == 0;
     }
 }
