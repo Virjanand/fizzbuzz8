@@ -9,21 +9,11 @@ public class FizzBuzzRules {
     }
 
     private Supplier<String> fizzRule(int number) {
-        return () -> {
-            if (isDisibleBy(number, 3)) {
-                return "Fizz";
-            }
-            return "";
-        };
+        return () -> isDisibleBy(number, 3) ? "Fizz" : "";
     }
 
     private Supplier<String> buzzRule(int number) {
-        return () -> {
-            if (isDisibleBy(number, 5)) {
-                return "Buzz";
-            }
-            return "";
-        };
+        return () -> isDisibleBy(number, 5) ? "Buzz" : "";
     }
 
     private boolean isDisibleBy(int number, int divisor) {
