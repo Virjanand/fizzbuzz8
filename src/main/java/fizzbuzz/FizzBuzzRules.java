@@ -1,19 +1,19 @@
 package fizzbuzz;
 
-import java.util.function.Supplier;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 public class FizzBuzzRules {
-    Stream<Supplier<String>> getRules(int number) {
-        return Stream.of(fizzRule(number), buzzRule(number));
+    Stream<Function<Integer, String>> getRules() {
+        return Stream.of(fizzRule(), buzzRule());
     }
 
-    private Supplier<String> fizzRule(int number) {
-        return () -> isDisibleBy(number, 3) ? "Fizz" : "";
+    private Function<Integer, String> fizzRule() {
+        return number -> isDisibleBy(number, 3) ? "Fizz" : "";
     }
 
-    private Supplier<String> buzzRule(int number) {
-        return () -> isDisibleBy(number, 5) ? "Buzz" : "";
+    private Function<Integer, String> buzzRule() {
+        return number -> isDisibleBy(number, 5) ? "Buzz" : "";
     }
 
     private boolean isDisibleBy(int number, int divisor) {
