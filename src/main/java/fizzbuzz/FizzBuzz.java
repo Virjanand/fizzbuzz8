@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 class FizzBuzzRules {
-    private Stream<Supplier<String>> getRules(int number) {
+    Stream<Supplier<String>> getRules(int number) {
         return Stream.of(fizzRule(number), buzzRule(number));
     }
 
@@ -32,29 +32,7 @@ class FizzBuzzRules {
 
 public class FizzBuzz {
     public List<String> getNumbers(int from, int until) {
-        return IntStream.rangeClosed(from, until).mapToObj(number -> toFizzBuzz(number, getRules(number))).collect(Collectors.toList());
-    }
-
-    private Stream<Supplier<String>> getRules(int number) {
-        return Stream.of(fizzRule(number), buzzRule(number));
-    }
-
-    private Supplier<String> fizzRule(int number) {
-        return () -> {
-            if (number % 3 == 0) {
-                return "Fizz";
-            }
-            return "";
-        };
-    }
-
-    private Supplier<String> buzzRule(int number) {
-        return () -> {
-            if (number % 5 == 0) {
-                return "Buzz";
-            }
-            return "";
-        };
+        return IntStream.rangeClosed(from, until).mapToObj(number -> toFizzBuzz(number, new FizzBuzzRules().getRules(number))).collect(Collectors.toList());
     }
 
     private String toFizzBuzz(int number, Stream<Supplier<String>> rules) {
