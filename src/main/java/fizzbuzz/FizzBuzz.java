@@ -1,7 +1,6 @@
 package fizzbuzz;
 
 import java.util.List;
-import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -13,14 +12,17 @@ public class FizzBuzz {
                 return "Fizz";
             }
             return "";
+        }, () -> {
+            if (number % 5 == 0) {
+                return "Buzz";
+            }
+            return "";
         })).collect(Collectors.toList());
     }
 
-    private String toFizzBuzz(int number, Supplier<String> fizzRule) {
+    private String toFizzBuzz(int number, Supplier<String> fizzRule, Supplier<String> buzzRule) {
         String result = fizzRule.get();
-        if (number % 5 == 0) {
-            result += "Buzz";
-        }
+        result += buzzRule.get();
         if (result.isEmpty()) {
             return Integer.toString(number);
         }
